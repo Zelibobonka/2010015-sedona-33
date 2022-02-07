@@ -1,3 +1,13 @@
+
+/* Переменные в начале */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --special-font-color: #333333;
+  --main-color: #83B3D3;
+  --special-color: #756257;
+}
+
 @font-face {
   font-family: "PT Sans";
   font-style: normal;
@@ -14,22 +24,9 @@
   font-display: swap;
 }
 
-:root {
-  --white: #ffffff;
-  --black: #000000;
-  --special-font-color: #333333;
-  --special-background-color: rgba(131, 179, 211, 0.12);
-}
-
-html {
-  height: 100%;
-}
-
+/* Глобальные стили */
 body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
   font-family: "PT Sans", sans-serif;
   font-size: 20px;
   line-height: 26px;
@@ -37,8 +34,32 @@ body {
   background-color: var(--white);
 }
 
+/* Сеточные стили */
+.page {
+  height: 100%;
+  /* Прoпиши серый задний фон */
+}
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  /* Вот стили для контейнера. Больше не надо. В Седоне все блоки находятся в одном контейнере */
+  width: 1200px;
+  min-height: 100%;
+  margin: 0 auto;
+}
+
+.page-main {
+  flex-grow: 1;
+}
+
+/* мелкие основные блоки */
 .button {
+  display: inline-block;
   color: var(--white);
+  /* Пропиши размеры шрифта для средней кнопки */
+  /* font-size: ;
+  line-height: ; */
   font-weight: 700;
   text-align: center;
   text-decoration: none;
@@ -50,10 +71,26 @@ body {
   line-height: 21px;
 }
 
+.button-large {
+  /* Пропиши размеры шрифта для больших кнопок */
+  font-size: ;
+  line-height: ;
+}
+
+.button-main {
+  background-color: var(--main-color);
+}
+
+.button-special {
+  background-color: var(--special-color);
+}
+
+/* основные блоки по порядку как идут в макете */
 .navigation {
   display: flex;
-  width: 1060px;
-  margin: 0 auto;
+  /* зачем это??? У тебя уже прописан же контейнер для боди */
+  /* width: 1060px;
+  margin: 0 auto; */
   padding: 0;
 }
 
@@ -65,6 +102,7 @@ body {
   width: 450px;
   margin: 0;
   padding: 0;
+  /* list-style-type не обнулил */
 }
 
 .navigation-user {
@@ -86,27 +124,24 @@ body {
   text-decoration: none;
 }
 
-.button-main {
-  background-color: #756257;
-  font-size: 16px;
-  line-height: 20px;
-}
-
 .main-container {
   flex-grow: 1;
-  width: 1200px;
-  margin: 0 auto;
+  /* Снова стили для контейнера? В седоне один контейнер. */
+  /* width: 1200px;
+  margin: 0 auto; */
 }
 
 .intro {
   background-image: url("../images/background/index-logo-background.jpg");
-  background-size: 100% auto;
+  background-size: cover;
   background-repeat: no-repeat;
+  /* Пропиши контрастный фон, чтобы слоган читался при незагруженной картинке для фона */
 }
 
 .causes-title {
-  width: 720px;
-  margin: 0 auto;
+  /* убери ширину у заголовка. Оберни заголовок и текст в общую обертку и ей задай ширину
+  /* width: 720px; */
+  /* margin: 0 auto; */
   font-size: 30px;
   line-height: 36px;
   font-weight: 700;
@@ -115,8 +150,8 @@ body {
 }
 
 .causes-text {
-  width: 720px;
-  margin: 0 auto;
+  /* width: 720px;
+  margin: 0 auto; */
   font-size: 22px;
   line-height: 36px;
   font-weight: 400;
@@ -124,8 +159,27 @@ body {
 }
 
 .causes-list {
+  /* Надо прописать флексы для списка с причинами. Флексы могут переносится на следующую строку, поэтому дополнительных дивов не надо */
+  display: flex;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
+  /* list-style-type не обнулил */
+}
+
+.causes-item-main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.causes-item-main .causes-item-text-holder {
+  width: 33.33%;
+  color: var(--white);
+  background-color: #83B3D3;
+}
+
+.causes-item-main .causes-item-image-holder {
+  width: 66.66%;
 }
 
 .causes-item-title {
@@ -143,33 +197,19 @@ body {
   text-align: center;
 }
 
-.causes-item-main-town {
-  color: var(--white);
-  background-color: #83B3D3;
-}
-
-.causes-item-main-town-wrapper {
-  display: flex;
-}
-
-.causes-item-main-bridge {
-  display: flex;
-  flex-direction: row-reverse;
-  color: var(--white);
-  background-color: #83B3D3;
-}
-
 .causes-item-bottom {
   display: flex;
 }
 
-.causes-item-another-light {
-  width: 400px;
-  background-color: var(--special-background-color);
+.causes-item-submain {
+  width: 33.33%;
 }
 
-.causes-item-another {
-  width: 400px;
+.causes-item-submain:nth-child(odd) {
+  background-color: rgba(131, 179, 211, 0.12);
+}
+
+.causes-item-submain:nth-child(even) {
   background-color: rgba(131, 179, 211, 0.2);
 }
 
@@ -177,10 +217,12 @@ body {
   display: flex;
   margin: 0;
   padding: 0;
+  /* list-style-type не обнулил */
 }
 
 .advantages-item {
-  width: 400px;
+  /* Привыкай для сеток задавать размеры в относительных еденицах. Понадобится при адаптивности */
+  width: 33.33%;
 }
 
 .advantages-title {
@@ -231,26 +273,29 @@ body {
 
 .offer-button {
   width: 575px;
-  background-color: #756257;
+  /* А для чего классы для кнопок делали? Зачем стилизовать кнопки отдельно в каждом блоке. Используй общие классы в разметке*/
+  /* background-color: #756257;
   font-size: 20px;
   line-height: 36px;
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: uppercase; */
 }
 
 .subscribe {
-  width: 1200px;
-  margin: 0 auto;
+  /* width: 1200px;
+  margin: 0 auto; */
   background-image: url("../images/background/index-subscription-background.jpg");
-  background-size: 100% auto;
+  background-size: cover;
   background-repeat: no-repeat;
   color: var(--white);
   text-align: center;
 }
 
+
+/* Оберни в общую обертку заголовок и текст, и ей назначь ширину */
 .subscribe-title {
-  width: 720px;
-  margin: 0 auto;
+  /* width: 720px; */
+  /* не обнулил дефолтные маргины */
   font-size: 30px;
   line-height: 36px;
   font-weight: 700;
@@ -258,8 +303,8 @@ body {
 }
 
 .subscribe-text {
-  width: 720px;
-  margin: 0 auto;
+  /* width: 720px; */
+  /* margin: 0 auto; */
   font-size: 22px;
   line-height: 26px;
   font-weight: 400;
@@ -274,19 +319,24 @@ body {
 
 .subscribe-button {
   width: 200px;
-  background-color: #83b3d3;
+  /* Используй общие классы для кнопок, просто вставь их в разметку */
+  /* background-color: #83b3d3;
   font-size: 20px;
-  line-height: 26px;
+  line-height: 26px; */
 }
 
 .page-footer-bottom {
   display: flex;
-  width: 1200px;
-  margin: 0 auto;
+  /* Не нужно */
+  /* width: 1200px;
+  margin: 0 auto; */
 }
 
+
 .social {
+  /* Не надо ограничивать ширину пусть тянется на ширину колонки */
   width: 107px;
+  /* Добавь колонки справа и слева колонки в футере одинаковой ширины. И по центру телефон. И отступы тогда одинаковые будут */
   margin-left: 72px;
   margin-right: 61px;
 }
@@ -363,10 +413,10 @@ body {
   text-transform: none;
 }
 
-.page-container {
+/* .page-container {
   width: 1056px;
   margin: 0 auto;
-}
+} */
 
 .select-control {
   color: var(--special-font-color);
@@ -409,13 +459,14 @@ body {
   color: var(--special-font-color);
 }
 
-.button-more {
+/* Используй общие классы для кнопок. А не прописывай везде. А если будет 10 страниц, то же каждую кнопку будешь прописывать?*/
+/* .button-more {
   background-color: #756257;
 }
 
 .button-favorites {
   background-color: #83b3d3;
-}
+} */
 
 .raiting {
   font-size: 16px;
